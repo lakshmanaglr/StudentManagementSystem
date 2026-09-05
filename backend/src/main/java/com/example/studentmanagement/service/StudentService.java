@@ -1,0 +1,3 @@
+package com.example.studentmanagement.service;
+import com.example.studentmanagement.dao.StudentDAO; import com.example.studentmanagement.model.Student; import org.springframework.stereotype.Service; import java.util.List;
+@Service public class StudentService { private final StudentDAO dao; public StudentService(StudentDAO dao){this.dao=dao;} public List<Student> all(){return dao.findAll();} public List<Student> search(String q){return dao.search(q);} public Student one(int id){return dao.findById(id);} public Student add(Student s){return dao.save(s);} public void update(int id,Student s){if(dao.update(id,s)==0)throw new RuntimeException("Student not found");} public void delete(int id){if(dao.delete(id)==0)throw new RuntimeException("Student not found");}}
